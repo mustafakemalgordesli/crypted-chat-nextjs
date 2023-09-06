@@ -6,6 +6,61 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model User {
+  id            Int    @id @default(autoincrement())
+  email         String @unique
+  username      String @unique @db.VarChar(20)
+  password      String
+  role          Role   @default(USER)
+  photoUrl      String @default("")
+  chatInitiated Chat[] @relation("UserOne")
+  chatReceived  Chat[] @relation("UserTwo")
+
+  sendingUser ChatItem[]
+  tokens      ResetToken[]
+  isStatus    Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Chat {
+  id              Int        @id @default(autoincrement())
+  userOneUsername String
+  userOne         User       @relation("UserOne", fields: [userOneUsername], references: [username], onDelete: Cascade)
+  userTwoUsername String
+  userTwo         User       @relation("UserTwo", fields: [userTwoUsername], references: [username], onDelete: Cascade)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  ChatItems       ChatItem[]
+
+  @@unique([userOneUsername, userTwoUsername])
+}
+
+model ChatItem {
+  id        Int      @id @default(autoincrement())
+  message   String   @db.Text
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+  chatId    Int
+  user      User     @relation(fields: [username], references: [username], onDelete: Cascade)
+  username  String
+  createdAt DateTime @default(now())
+  isRead    Boolean  @default(false)
+}
+
+model ResetToken {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int      @unique
+  token     String   @unique
+  createdAt DateTime @default(now())
+}
+
+enum Role {
+  USER
+  ADMIN
 }
