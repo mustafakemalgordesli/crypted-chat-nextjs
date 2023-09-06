@@ -4,6 +4,11 @@ import httpStatus from "http-status";
 import bcrypt from "bcrypt";
 import next from "@/scripts/next"
 import { generateAccessToken, generateRefreshToken } from "@/scripts/utils/helper"
+import { z } from "zod";
+
+// const createValidation = z.object({
+//     username: z.string().re
+// })
 
 export async function POST(req) {
     let body;
@@ -48,6 +53,8 @@ export async function POST(req) {
             }
         });
 
+        console.log(savedUser)
+
         if (savedUser) {
             const accessToken = generateAccessToken({
                 user: savedUser
@@ -77,6 +84,11 @@ export async function POST(req) {
         })
 
     } catch (error) {
-        return NextResponse.json({ success: false, error }, { status: 500 })
+        const { name, message } = error
+        return NextResponse.json({
+            success: false, error: {
+                name, message
+            }
+        }, { status: 500 })
     }
 }
