@@ -7,6 +7,7 @@ import { generateAccessToken, generateRefreshToken } from "@/scripts/utils/helpe
 
 export async function POST(req) {
     let body;
+
     try {
         body = await req.json()
 
@@ -75,7 +76,7 @@ export async function POST(req) {
             message: "User not created",
         })
 
-    } catch ({ name, message }) {
-        return NextResponse.json({ success: false }, { status: 500 })
+    } catch (error) {
+        return NextResponse.json({ success: false, error }, { status: 500 })
     }
 }
