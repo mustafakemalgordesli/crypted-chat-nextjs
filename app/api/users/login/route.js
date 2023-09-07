@@ -6,6 +6,11 @@ import next from "@/scripts/next"
 import { generateAccessToken, generateRefreshToken } from "@/scripts/utils/helper"
 import { z } from "zod";
 
+const loginSchema = z.object({
+    username: z.string(),
+    password: z.string().min(6)
+})
+
 export async function POST(req) {
     let body;
 
@@ -14,28 +19,32 @@ export async function POST(req) {
 
         let user;
 
-        if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(body.username)) {
+        const isValidData = loginSchema.parse(body)
+
+        if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(isValidData.username)) {
             user = await prisma.user.findFirst({
                 where: {
-                    email: body.username,
+                    email: isValidData.username,
+                    isStatus: true,
                 }
             })
-        } else if (/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(body.username)) {
+        } else if (/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(isValidData.username)) {
             user = await prisma.user.findFirst({
                 where: {
-                    username: body.username,
+                    username: isValidData.username,
+                    isStatus: true
                 }
             })
         }
 
         if (!user)
-            return res.status(httpStatus.OK).json({
+            return NextResponse.json({
                 success: false,
                 message: "User not found",
-            });
+            }, { status: httpStatus.BAD_REQUEST });
 
 
-        const match = await bcrypt.compare(body.password, user.password)
+        const match = await bcrypt.compare(isValidData.password, user.password)
 
         if (match) {
             user.password = undefined;
