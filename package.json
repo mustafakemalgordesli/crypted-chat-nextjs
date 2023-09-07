@@ -31,6 +31,7 @@
   "devDependencies": {
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",
+    "daisyui": "^3.7.3",
     "prisma": "^5.2.0"
   }
 }
