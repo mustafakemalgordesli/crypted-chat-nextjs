@@ -1,22 +1,31 @@
 import prisma from "@/lib/prisma"
-import { NextResponse } from "next/server";
 import httpStatus from "http-status";
 import next from "@/scripts/next"
+import useMiddleware from "@/middlewares/useMiddleware";
+import authenticate from "@/middlewares/authenticate";
+import { NextResponse } from "next/server";
 
-export async function GET(req) {
-    try {
-        const token = req.headers.get("authorization")
+async function handler(req) {
+    const user = await prisma.user.findFirst({
+        where: { id: req?.user?.id, isStatus: true }, select: {
+            id: true,
+            email: true,
+            role: true,
+            username: true
+        }
+    })
 
-        return NextResponse.json({
-            success: true,
-            // data: user,
-        }, { status: httpStatus.OK });
-    } catch (error) {
-        const { name, message } = error
-        return NextResponse.json({
-            success: false, error: {
-                name, message
-            }
-        }, { status: 500 })
-    }
+    if (!user)
+        return next({
+            statusCode: httpStatus.NOT_FOUND,
+            message: "User not found",
+        });
+
+    return NextResponse.json({
+        success: true,
+        data: user,
+    }, { status: httpStatus.OK });
 }
+
+export const GET = async (req) => useMiddleware(req, authenticate, handler)
+

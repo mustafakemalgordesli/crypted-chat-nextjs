@@ -80,7 +80,7 @@ export async function POST(req) {
 
             // let expiresIn = Date.now() + 1000 * 60 * 60 * 24 * 7 * 4;
 
-            return NextResponse.json({
+            const response = NextResponse.json({
                 data: savedUser,
                 success: true,
                 message: "User created",
@@ -90,6 +90,20 @@ export async function POST(req) {
                 },
                 // expiresIn,
             }, { status: httpStatus.CREATED });
+
+            response.cookies.set({
+                name: "accessToken",
+                value: accessToken,
+                path: "/",
+            });
+
+            response.cookies.set({
+                name: "refreshToken",
+                value: refreshToken,
+                path: "/",
+            });
+
+            return response
         }
 
         return next({
@@ -98,14 +112,8 @@ export async function POST(req) {
         })
 
     } catch (error) {
-        const { name, message } = error
-        if (name === "ZodError") {
-            return next({ message: "Request not valid", statusCode: httpStatus.BAD_REQUEST })
-        }
-        return NextResponse.json({
-            success: false, error: {
-                name, message
-            }
-        }, { status: 500 })
+        return next({
+            error
+        })
     }
 }
