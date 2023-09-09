@@ -58,6 +58,9 @@ const index = () => {
               >
                 <button className="font-semibold text-lg">+</button>
               </div>
+              {/* <div class="tooltip" data-tip="Create DM">
+  <button className="font-semibold text-lg">+</button>
+</div> */}
             </div>
           </div>
           <div className="h-full px-1 py-2 overflow-y-auto">

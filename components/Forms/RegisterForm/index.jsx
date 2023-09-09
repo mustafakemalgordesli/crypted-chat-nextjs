@@ -1,13 +1,49 @@
+"use client";
+
+import { authSchema } from "@/schemas";
+import { useFormik } from "formik";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 const index = () => {
+  const router = useRouter();
+
+  const onSubmit = async (values, actions) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/users/register",
+        values
+      );
+      console.log("Registration successful:", response.data);
+    } catch (error) {
+      console.error("Registration failed:", error);
+    }
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    actions.resetForm();
+    router.push("/login");
+  };
+
+  const {
+    values,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    errors,
+    touched,
+    isSubmitting,
+  } = useFormik({
+    initialValues: {
+      email: "",
+      username: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: authSchema,
+    onSubmit,
+  });
 
   // const router = useRouter()
-  // const [data, setData] = useState({
-  //   username: '',
-  //   email: '',
-  //   password: ''
-  // })
 
   // const registerUser = async (e) => {
   //   e.preventDefault()
@@ -27,75 +63,111 @@ const index = () => {
   return (
     <div className="border border-gray-500 rounded-lg px-24 py-4 shadow-xl">
       <div>
-        <h1 className="text-gray-300 mb-4 font-semibold text-2xl">
+        <h1 className="text-gray-300 mb-4 font-semibold text-2xl text-center">
           Create an account
         </h1>
       </div>
-      <form>
-        <div className="mb-6">
-          <label
-            htmlFor="username"
-            className="block mb-2 text-sm font-medium text-white"
-          >
-            Username
-          </label>
-          <input
-            type="text"
-            // name="username"
-            // value={data.username}
-            // onChange={(e) => {setData({...data, username: e.target.value})}}
-            className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="username"
-            required
-          />
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text text-gray-200">Username</span>
+            </label>
+            <input
+              value={values.username}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              id="username"
+              type="text"
+              placeholder="Username"
+              className={
+                errors.username && touched.username
+                  ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
+                  : "input input-bordered w-full max-w-xs placeholder:text-sm"
+              }
+            />
+            {errors.username && touched.username && (
+              <p className="text-xs text-red-600">{errors.username}</p>
+            )}
+          </div>
         </div>
-        <div className="mb-6">
-          <label
-            htmlFor="email"
-            className="block mb-2 text-sm font-medium text-white"
-          >
-            Your email
-          </label>
-          <input
-            type="email"
-            // name="email"
-            // value={data.email}
-            // onChange={(e) => {setData({...data, email: e.target.value})}}
-            className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="name@example.com"
-            required
-          />
+        <div className="mb-4">
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text text-gray-200">Email</span>
+            </label>
+            <input
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              id="email"
+              type="email"
+              placeholder="email@example.com"
+              className={
+                errors.email && touched.email
+                  ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
+                  : "input input-bordered w-full max-w-xs placeholder:text-sm"
+              }
+            />
+            {errors.email && touched.email && (
+              <p className="text-xs text-red-600">{errors.email}</p>
+            )}
+          </div>
         </div>
-        <div className="mb-6">
-          <label
-            htmlFor="password"
-            className="block mb-2 text-sm font-medium text-white"
+        <div className="mb-4">
+          <div
+            className="tooltip tooltip-bottom"
+            data-tip="Must have at least 6 characters."
           >
-            Your password
-          </label>
-          <input
-            type="password"
-            // name="password"
-            // value={data.password}
-            // onChange={(e) => {setData({...data, password: e.target.value})}}
-            className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            required
-          />
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text text-gray-200">Password</span>
+              </label>
+              <input
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="password"
+                type="password"
+                className={
+                  errors.password && touched.password
+                    ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
+                    : "input input-bordered w-full max-w-xs placeholder:text-sm"
+                }
+              />
+              {errors.password && touched.password && (
+                <p className="text-xs text-red-600">{errors.password}</p>
+              )}
+            </div>
+          </div>
         </div>
-        <div className="mb-6">
-          <label
-            htmlFor="password"
-            className="block mb-2 text-sm font-medium text-white"
-          >
-            Confirm password
-          </label>
-          <input
-            type="password"
-            className="bg-transparent border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            required
-          />
+        <div className="mb-4">
+          <div className="form-control w-full max-w-xs">
+            <label className="label">
+              <span className="label-text text-gray-200">Confirm Password</span>
+            </label>
+            <input
+              value={values.confirmPassword}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              id="confirmPassword"
+              type="password"
+              className={
+                errors.confirmPassword && touched.confirmPassword
+                  ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
+                  : "input input-bordered w-full max-w-xs placeholder:text-sm"
+              }
+            />
+            {errors.confirmPassword && touched.confirmPassword && (
+              <p className="text-xs text-red-600">{errors.confirmPassword}</p>
+            )}
+          </div>
         </div>
-        <button type="submit" className="btn btn-block">
+        <button
+          type="submit"
+          className="btn btn-block disabled:opacity-25"
+          disabled={isSubmitting}
+        >
           Register
         </button>
         <div className="mt-4">
