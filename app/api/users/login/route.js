@@ -2,8 +2,8 @@ import prisma from "@/lib/prisma"
 import { NextResponse } from "next/server";
 import httpStatus from "http-status";
 import bcrypt from "bcrypt";
-import next from "@/scripts/next"
-import { generateAccessToken, generateRefreshToken } from "@/scripts/utils/helper"
+import next from "@/lib/next"
+import { generateAccessToken, generateRefreshToken } from "@/lib/utils/helper"
 import { z } from "zod";
 
 const loginSchema = z.object({
@@ -67,7 +67,7 @@ export async function POST(req) {
 
             // let expiresIn = Date.now() + 1000 * 60 * 60 * 24 * 7 * 4;
 
-            return NextResponse.json({
+            const response = NextResponse.json({
                 success: true,
                 data: user,
                 // expiresIn,
@@ -76,20 +76,32 @@ export async function POST(req) {
                     refreshToken
                 },
             }, { status: 200 });
+
+            response.cookies.set({
+                name: "accessToken",
+                value: accessToken,
+                path: "/",
+            });
+
+            response.cookies.set({
+                name: "refreshToken",
+                value: refreshToken,
+                path: "/",
+            })
+
+
+            return response
         }
 
         return next({
             error: err,
             statusCode: httpStatus.BAD_REQUEST,
-            message: "Password is wrond",
+            message: "Password is wrong",
         })
 
     } catch (error) {
-        const { name, message } = error
-        return NextResponse.json({
-            success: false, error: {
-                name, message
-            }
-        }, { status: 500 })
+        return next({
+            error
+        })
     }
 }

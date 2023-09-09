@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma"
 import { NextResponse } from "next/server";
 import httpStatus from "http-status";
-import next from "@/scripts/next"
+import next from "@/lib/next"
 import { z } from "zod";
 import bcrypt from "bcrypt";
 
@@ -63,16 +63,17 @@ export async function POST(req) {
             }
         })
 
+        prisma.resetToken.delete({
+            where: { id: resetToken?.id }
+        })
+
         return NextResponse.json({
             success: true
         }, { status: httpStatus.OK })
 
     } catch (error) {
-        const { name, message } = error
-        return NextResponse.json({
-            success: false, error: {
-                name, message
-            }
-        }, { status: 500 })
+        return next({
+            error
+        })
     }
 }

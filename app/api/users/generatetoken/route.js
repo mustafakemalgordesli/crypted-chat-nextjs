@@ -1,8 +1,8 @@
 import prisma from "@/lib/prisma"
 import { NextResponse } from "next/server";
 import httpStatus from "http-status";
-import next from "@/scripts/next"
-import sendMail from "@/scripts/utils/sendMail";
+import next from "@/lib/next"
+import sendMail from "@/lib/utils/sendMail";
 import { z } from "zod";
 
 const validateSchema = z.object({
