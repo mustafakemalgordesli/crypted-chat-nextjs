@@ -2,7 +2,7 @@ import { z } from "zod"
 import prisma from "@/lib/prisma"
 import { NextResponse } from "next/server";
 import httpStatus from "http-status";
-import next from "@/scripts/next"
+import next from "@/lib/next"
 import useMiddleware from "@/middlewares/useMiddleware";
 import authenticate from "@/middlewares/authenticate";
 
@@ -91,11 +91,21 @@ async function getHandler(req) {
         where: {
             AND: [
                 {
-                    ChatItems: {
-                        every: {
-                            isRead: true,
+                    NOT: {
+                        ChatItems: {
+                            some: {
+                                AND: [
+                                    {
+                                        NOT: {
+                                            username: req?.user?.username,
+                                        }
+                                    }, {
+                                        isRead: false,
+                                    }
+                                ]
+                            },
                         },
-                    },
+                    }
                 },
                 {
                     OR: [
@@ -118,7 +128,15 @@ async function getHandler(req) {
                 {
                     ChatItems: {
                         some: {
-                            isRead: false,
+                            AND: [
+                                {
+                                    NOT: {
+                                        username: req?.user?.username,
+                                    }
+                                }, {
+                                    isRead: false,
+                                }
+                            ]
                         },
                     },
                 },

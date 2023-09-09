@@ -2,8 +2,8 @@ import prisma from "@/lib/prisma"
 import { NextResponse } from "next/server";
 import httpStatus from "http-status";
 import bcrypt from "bcrypt";
-import next from "@/scripts/next"
-import { generateAccessToken, generateRefreshToken } from "@/scripts/utils/helper"
+import next from "@/lib/next"
+import { generateAccessToken, generateRefreshToken } from "@/lib/utils/helper"
 import { z } from "zod";
 
 const createSchema = z.object({

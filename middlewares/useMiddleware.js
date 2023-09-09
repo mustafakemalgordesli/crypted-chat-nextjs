@@ -1,4 +1,4 @@
-import next from "@/scripts/next";
+import next from "@/lib/next";
 
 const useMiddleware = async (req, ...handlers) => {
     try {
