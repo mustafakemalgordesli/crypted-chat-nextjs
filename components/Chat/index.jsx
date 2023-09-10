@@ -1,12 +1,20 @@
-import Image from "next/image";
-import React from "react";
+"use client";
 
-const index = () => {
+import Image from "next/image";
+import React, { useEffect, useRef } from "react";
+
+const Chat = () => {
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    console.log(".alıştı");
+    bottomRef.current?.scrollIntoView({ behavioe: "smooth" });
+  }, []);
   return (
     <>
       <div className="px-5 w-full">
-        <div>
-          <div className="chat chat-start mt-20">
+        <div className="mb-16 mt-20 scroll-smooth overflow-y-auto">
+          <div className="chat chat-start">
             <div className="chat-image avatar">
               <div className="w-10 rounded-full">
                 <Image src="/1.jpg" alt="" width={40} height={40} />
@@ -204,7 +212,7 @@ const index = () => {
             <div className="chat-footer opacity-50">Delivered</div>
           </div>
           {/* to here delete */}
-          <div className="chat chat-end mb-16">
+          <div className="chat chat-end">
             <div className="chat-image avatar">
               <div className="w-10 rounded-full">
                 <Image src="/1.jpg" alt="" width={40} height={40} />
@@ -217,8 +225,10 @@ const index = () => {
             <div className="chat-bubble">I hate you!</div>
             <div className="chat-footer opacity-50">Seen at 12:46</div>
           </div>
+
+          <div ref={bottomRef} />
         </div>
-        <form className="fixed bottom-0 right-0 lg:left-80 sm:max-w-full">
+        <form className="fixed bottom-0 right-0 lg:left-80 w-full lg:w-auto bg-black">
           <label htmlFor="chat" className="sr-only">
             Message
           </label>
@@ -304,4 +314,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Chat;
