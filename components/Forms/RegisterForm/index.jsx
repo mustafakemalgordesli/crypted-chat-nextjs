@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-const index = () => {
+const RegisterForm = () => {
   const router = useRouter();
 
   const onSubmit = async (values, actions) => {
@@ -183,4 +183,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default RegisterForm;

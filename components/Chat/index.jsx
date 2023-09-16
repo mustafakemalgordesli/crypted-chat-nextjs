@@ -7,9 +7,9 @@ const Chat = () => {
   const bottomRef = useRef(null);
 
   useEffect(() => {
-    console.log(".alıştı");
     bottomRef.current?.scrollIntoView({ behavioe: "smooth" });
   }, []);
+
   return (
     <>
       <div className="px-5 w-full">
@@ -228,7 +228,7 @@ const Chat = () => {
 
           <div ref={bottomRef} />
         </div>
-        <form className="fixed bottom-0 right-0 lg:left-80 w-full lg:w-auto bg-black">
+        <form className="fixed bottom-0 right-0 lg:left-80 w-full lg:w-auto bg-base-100">
           <label htmlFor="chat" className="sr-only">
             Message
           </label>

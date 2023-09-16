@@ -6,8 +6,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const index = () => {
-  
+const LoginForm = () => {
   const router = useRouter();
 
   const [username, setUsername] = useState("");
@@ -75,7 +74,7 @@ const index = () => {
         </div>
         <div className="mb-6 self-end">
           <Link href="#" className="link link-info link-hover text-sm">
-            Forget your password?
+            Forgot your password?
           </Link>
         </div>
         <button type="submit" className="btn btn-block">
@@ -94,4 +93,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default LoginForm;
