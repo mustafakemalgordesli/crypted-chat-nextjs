@@ -1,17 +1,18 @@
-import Chat from "@/components/Chat";
-import MainNavbar from "@/components/Navbar/MainNavbar";
+import StarterChat from "@/components/StarterChat";
+import SecondaryNavbar from "@/components/Navbar/SecondaryNavbar";
 import Sidebar from "@/components/Sidebar";
 
-const page = () => {
+const ChatHomePage = () => {
+
   return (
     <>
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
           {/* Navbar */}
-          <MainNavbar />
+          <SecondaryNavbar />
           {/* chat content here */}
-          <Chat />
+          <StarterChat />
         </div>
         {/* Sidebar content here */}
         <Sidebar />
@@ -20,4 +21,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ChatHomePage;

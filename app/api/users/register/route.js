@@ -67,8 +67,6 @@ export async function POST(req) {
             }
         });
 
-        console.log(savedUser)
-
         if (savedUser) {
             const accessToken = generateAccessToken({
                 user: savedUser

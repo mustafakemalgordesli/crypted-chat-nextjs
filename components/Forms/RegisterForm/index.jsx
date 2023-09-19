@@ -6,15 +6,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
-const index = () => {
+const RegisterForm = () => {
   const router = useRouter();
 
   const onSubmit = async (values, actions) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/users/register",
-        values
-      );
+      const response = await axios.post("/api/users/register", values);
       console.log("Registration successful:", response.data);
     } catch (error) {
       console.error("Registration failed:", error);
@@ -42,23 +39,6 @@ const index = () => {
     validationSchema: authSchema,
     onSubmit,
   });
-
-  // const router = useRouter()
-
-  // const registerUser = async (e) => {
-  //   e.preventDefault()
-  //   const response = await fetch('/api/register', {
-  //     method: "POST",
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({data})
-  //   })
-
-  //   const userInfo = await response.json()
-  //   console.log(userInfo)
-  //   router.push("/login")
-  // }
 
   return (
     <div className="border border-gray-500 rounded-lg px-24 py-4 shadow-xl">
@@ -183,4 +163,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default RegisterForm;

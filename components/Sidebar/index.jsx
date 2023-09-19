@@ -38,7 +38,7 @@ const index = () => {
                     </div>
                     <input
                       type="search"
-                      className="block w-full p-1 pl-10 text-xs text-gray-300 bg-transparent border border-gray-500 placeholder-gray-400 rounded-lg  focus:ring-gray-500 focus:border-blue-500 dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-gray-500 dark:focus:border-blue-500"
+                      className="block w-full p-1 pl-10 text-xs text-gray-300 bg-transparent border border-gray-500 placeholder-gray-400 rounded-lg"
                       placeholder="Find or start a conversation"
                       required
                     />
@@ -160,9 +160,9 @@ const index = () => {
               </li>
             </ul>
 
-            <ul className="fixed w-full z-20 bottom-0 left-0 space-y-2 font-medium border-t border-gray-700 dark:border-gray-700">
-              <li>
-                <div className="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg  group">
+            <div className="fixed w-full z-20 bottom-0 left-0 space-y-2 font-medium border-t border-gray-700 dark:border-gray-700">
+              <div>
+                <div className="flex items-center p-2 text-gray-900 transition duration-75 group">
                   <button
                     type="button"
                     className="flex text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
@@ -182,7 +182,7 @@ const index = () => {
                   <div className="flex flex-row w-full justify-between items-center overflow-hidden transition-all mr-2 px-2.5 py-0.5">
                     <h4 className="font-semibold text-gray-200">John Doe</h4>
                     <div
-                      className=" tooltip hover:tooltip-open tooltip-top"
+                      className="tooltip hover:tooltip-open tooltip-top"
                       data-tip="User Settings"
                     >
                       <Link href="/user-settings">
@@ -193,8 +193,8 @@ const index = () => {
                     </div>
                   </div>
                 </div>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </ul>
       </div>
