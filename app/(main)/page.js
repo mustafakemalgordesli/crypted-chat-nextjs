@@ -6,7 +6,7 @@ export default function Home() {
       <div className="h-screen w-full">
         <div className="hero min-h-screen bg-slate-800">
           <div className="absolute top-0 left-0 flex flex-row justify-between items-center w-full p-8">
-            <div>Crypted-Chat</div>
+            <Link className="text-xl font-bold" href="/">Crypted-Chat</Link>
             <div className="">
               <Link href="/" className="link link-hover mr-4">
                 [ Source ]

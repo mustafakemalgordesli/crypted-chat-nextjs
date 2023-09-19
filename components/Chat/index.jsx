@@ -3,14 +3,13 @@
 import Image from "next/image";
 import EmojiPicker from "@/components/EmojiPicker";
 import ChatItem from "../ChatItem";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import { useRouter, useEffect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Chat = ({ token }) => {
-  
   const bottomRef = useRef(null);
-  
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavioe: "smooth" });
   }, []);
@@ -44,18 +43,16 @@ const Chat = ({ token }) => {
           },
         }
       );
-      router.refresh()
+      router.refresh();
       console.log("Chat Item successful:", response.data);
     } catch (error) {
       console.error("Chat Item failed:", error);
     }
   };
 
-
   return (
     <>
       <div className="px-5 w-full">
-
         <div className="my-20">
           <ChatItem token={token} />
           <div ref={bottomRef} />
@@ -87,8 +84,8 @@ const Chat = ({ token }) => {
                     </svg>
                   </div>
 
-                  <EmojiPicker 
-                  onChange={(e) => Field.onChange(`${field.value} ${e}`)}
+                  <EmojiPicker
+                    onChange={(e) => Field.onChange(`${field.value} ${e}`)}
                   />
                 </label>
               </div>

@@ -120,9 +120,9 @@ export default function ForgotPasswordForm() {
           </Formik>
 
           <p className="flex flex-col justify-center items-center sm:flex-row mt-10 text-center text-sm ">
-            Şifrenizi hatırladınız mı?
+            Remember your password?
             <Link href="/login" className="link link-info link-hover pl-1">
-              Giriş Yap
+              Login
             </Link>
           </p>
         </div>

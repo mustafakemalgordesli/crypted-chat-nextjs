@@ -185,7 +185,7 @@ const index = () => {
                       className="tooltip hover:tooltip-open tooltip-top"
                       data-tip="User Settings"
                     >
-                      <Link href="/user-settings">
+                      <Link href="/settings">
                         <button className="inline-flex items-center justify-center text-lg font-medium text-gray-300 rotate-90">
                           ...
                         </button>

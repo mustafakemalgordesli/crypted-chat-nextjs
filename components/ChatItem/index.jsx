@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ChatItem = ({ token }) => {
-  
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -16,7 +15,7 @@ const ChatItem = ({ token }) => {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     };
-    
+
     axios
       .get(apiUrl, { headers })
       .then((response) => {
@@ -36,7 +35,7 @@ const ChatItem = ({ token }) => {
         : data?.readChats?.map((item) => (
             <div key={item}>
               <div className="chat chat-start">
-              <div className="chat-image avatar">
+                <div className="chat-image avatar">
                   <div className="w-10 rounded-full">
                     <Image src="/1.jpg" alt="" width={40} height={40} />
                   </div>
@@ -48,7 +47,6 @@ const ChatItem = ({ token }) => {
                 <div className="chat-bubble">I hate you!</div>
               </div>
               <div className="chat chat-end">
-                
                 <div className="chat-image avatar">
                   <div className="w-10 rounded-full">
                     <Image src="/1.jpg" alt="" width={40} height={40} />
