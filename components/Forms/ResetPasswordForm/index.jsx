@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
+import InputError from "@/components/InputError";
 
 export default function ResetPasswordForm() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function ResetPasswordForm() {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <Link href="/" className="flex items-center mb-6 text-3xl font-bold">
+      <Link href="/" className="flex items-center mb-4 text-3xl font-bold">
         <Image
           className="mr-2"
           src="/1.jpg"
@@ -25,9 +26,9 @@ export default function ResetPasswordForm() {
           width={36}
           height={36}
         />
-        Mentorify
+        Crypted-Chat
       </Link>
-      <div className="flex flex-col justify-center px-12 py-10 border border-gray-500 rounded-lg shadow-xl">
+      <div className="flex flex-col justify-center px-24 py-4 border border-gray-500 rounded-lg shadow-xl">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <h2 className="text-center text-gray-300 font-semibold text-2xl mb-4 leading-9 tracking-tight ">
             Change Password
@@ -121,13 +122,15 @@ export default function ResetPasswordForm() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.pin}
-                      className="input input-bordered w-full max-w-xs placeholder:text-sm"
+                      className={
+                        errors.password
+                          ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
+                          : "input input-bordered w-full max-w-xs placeholder:text-sm"
+                      }
                       maxLength={6}
                     />
                   </div>
-                  {errors.pin && (
-                    <p className="text-xs text-red-700 mt-4">{errors.pin}</p>
-                  )}
+                  <InputError error={errors.pin} />
                 </div>
 
                 <div className="mb-4">
@@ -142,14 +145,14 @@ export default function ResetPasswordForm() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.password}
-                      className="input input-bordered w-full max-w-xs placeholder:text-sm"
+                      className={
+                        errors.password
+                          ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
+                          : "input input-bordered w-full max-w-xs placeholder:text-sm"
+                      }
                     />
                   </div>
-                  {errors.pin && (
-                    <p className="text-xs text-red-700 mt-4">
-                      {errors.password}
-                    </p>
-                  )}
+                  <InputError error={errors.password} />
                 </div>
 
                 <div className="mb-4">
@@ -166,14 +169,14 @@ export default function ResetPasswordForm() {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.confirmPassword}
-                      className="input input-bordered w-full max-w-xs placeholder:text-sm"
+                      className={
+                        errors.password
+                          ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
+                          : "input input-bordered w-full max-w-xs placeholder:text-sm"
+                      }
                     />
                   </div>
-                  {errors.pin && (
-                    <p className="text-xs text-red-700 mt-4">
-                      {errors.confirmPassword}
-                    </p>
-                  )}
+                  <InputError error={errors.confirmPassword} />
                 </div>
 
                 <div>
@@ -184,17 +187,21 @@ export default function ResetPasswordForm() {
                   >
                     Reset Password
                   </button>
+                  <div className="mt-4">
+                    <p>
+                      Already have an account?
+                      <Link
+                        href="/login"
+                        className="link link-info link-hover pl-1"
+                      >
+                        Login
+                      </Link>
+                    </p>
+                  </div>
                 </div>
               </form>
             )}
           </Formik>
-
-          {/* <p className="flex flex-col justify-center items-center sm:flex-row mt-10 text-center text-sm ">
-            Şifrenizi hatırladınız mı?
-            <Link href="/login" className="link link-info link-hover pl-1">
-              Giriş Yap
-            </Link>
-          </p> */}
         </div>
       </div>
       <ToastContainer />
