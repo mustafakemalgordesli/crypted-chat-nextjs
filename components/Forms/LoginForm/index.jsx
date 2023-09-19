@@ -71,7 +71,7 @@ const LoginForm = () => {
         </div>
         <div className="mb-6 self-end">
           <Link href="#" className="link link-info link-hover text-sm">
-            Forget your password?
+            Forgot your password?
           </Link>
         </div>
         <button type="submit" className="btn btn-block">

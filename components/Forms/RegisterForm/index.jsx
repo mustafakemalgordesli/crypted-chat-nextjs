@@ -5,6 +5,8 @@ import { useFormik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import InputError from "@/components/InputError";
+import Image from "next/image";
 
 const RegisterForm = () => {
   const router = useRouter();
@@ -41,124 +43,139 @@ const RegisterForm = () => {
   });
 
   return (
-    <div className="border border-gray-500 rounded-lg px-24 py-4 shadow-xl">
-      <div>
-        <h1 className="text-gray-300 mb-4 font-semibold text-2xl text-center">
-          Create an account
-        </h1>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              <span className="label-text text-gray-200">Username</span>
-            </label>
-            <input
-              value={values.username}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              id="username"
-              type="text"
-              placeholder="Username"
-              className={
-                errors.username && touched.username
-                  ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
-                  : "input input-bordered w-full max-w-xs placeholder:text-sm"
-              }
-            />
-            {errors.username && touched.username && (
-              <p className="text-xs text-red-600">{errors.username}</p>
-            )}
-          </div>
+    <div className="flex flex-col items-center justify-cente">
+      <Link href="/" className="flex items-center mb-4 text-3xl font-bold">
+        <Image
+          className="mr-2"
+          src="/1.jpg"
+          alt="logo"
+          width={36}
+          height={36}
+        />
+        Crypted-Chat
+      </Link>
+      <div className="border border-gray-500 rounded-lg px-24 py-4 shadow-xl">
+        <div>
+          <h1 className="text-gray-300 mb-4 font-semibold text-2xl text-center">
+            Create an account
+          </h1>
         </div>
-        <div className="mb-4">
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              <span className="label-text text-gray-200">Email</span>
-            </label>
-            <input
-              value={values.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              id="email"
-              type="email"
-              placeholder="email@example.com"
-              className={
-                errors.email && touched.email
-                  ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
-                  : "input input-bordered w-full max-w-xs placeholder:text-sm"
-              }
-            />
-            {errors.email && touched.email && (
-              <p className="text-xs text-red-600">{errors.email}</p>
-            )}
-          </div>
-        </div>
-        <div className="mb-4">
-          <div
-            className="tooltip tooltip-bottom"
-            data-tip="Must have at least 6 characters."
-          >
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
             <div className="form-control w-full max-w-xs">
               <label className="label">
-                <span className="label-text text-gray-200">Password</span>
+                <span className="label-text text-gray-200">Username</span>
               </label>
               <input
-                value={values.password}
+                value={values.username}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                id="password"
-                type="password"
+                id="username"
+                type="text"
+                placeholder="Username"
                 className={
-                  errors.password && touched.password
+                  errors.username && touched.username
                     ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
                     : "input input-bordered w-full max-w-xs placeholder:text-sm"
                 }
               />
-              {errors.password && touched.password && (
-                <p className="text-xs text-red-600">{errors.password}</p>
+              {errors.username && touched.username && (
+                <p className="text-xs text-red-600">{errors.username}</p>
               )}
             </div>
           </div>
-        </div>
-        <div className="mb-4">
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              <span className="label-text text-gray-200">Confirm Password</span>
-            </label>
-            <input
-              value={values.confirmPassword}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              id="confirmPassword"
-              type="password"
-              className={
-                errors.confirmPassword && touched.confirmPassword
-                  ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
-                  : "input input-bordered w-full max-w-xs placeholder:text-sm"
-              }
-            />
-            {errors.confirmPassword && touched.confirmPassword && (
-              <p className="text-xs text-red-600">{errors.confirmPassword}</p>
-            )}
+          <div className="mb-4">
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text text-gray-200">Email</span>
+              </label>
+              <input
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="email"
+                type="email"
+                placeholder="email@example.com"
+                className={
+                  errors.email && touched.email
+                    ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
+                    : "input input-bordered w-full max-w-xs placeholder:text-sm"
+                }
+              />
+              {errors.email && touched.email && (
+                <p className="text-xs text-red-600">{errors.email}</p>
+              )}
+            </div>
           </div>
-        </div>
-        <button
-          type="submit"
-          className="btn btn-block disabled:opacity-25"
-          disabled={isSubmitting}
-        >
-          Register
-        </button>
-        <div className="mt-4">
-          <p>
-            Already have an account?
-            <Link href="/login" className="link link-info link-hover pl-1">
-              Login
-            </Link>
-          </p>
-        </div>
-      </form>
+          <div className="mb-4">
+            <div
+              className="tooltip tooltip-bottom"
+              data-tip="Must have at least 6 characters."
+            >
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text text-gray-200">Password</span>
+                </label>
+                <input
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  id="password"
+                  type="password"
+                  className={
+                    errors.password && touched.password
+                      ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
+                      : "input input-bordered w-full max-w-xs placeholder:text-sm"
+                  }
+                />
+                <InputError
+                  error={errors.password && touched.password}
+                  message={errors.password}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="mb-4">
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text text-gray-200">
+                  Confirm Password
+                </span>
+              </label>
+              <input
+                value={values.confirmPassword}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="confirmPassword"
+                type="password"
+                className={
+                  errors.confirmPassword && touched.confirmPassword
+                    ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm"
+                    : "input input-bordered w-full max-w-xs placeholder:text-sm"
+                }
+              />
+              {errors.confirmPassword && touched.confirmPassword && (
+                <p className="text-xs text-red-600">{errors.confirmPassword}</p>
+              )}
+            </div>
+          </div>
+          <button
+            type="submit"
+            className="btn btn-block disabled:opacity-25"
+            disabled={isSubmitting}
+          >
+            Register
+          </button>
+          <div className="mt-4">
+            <p>
+              Already have an account?
+              <Link href="/login" className="link link-info link-hover pl-1">
+                Login
+              </Link>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
