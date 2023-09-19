@@ -1,21 +1,61 @@
-import StarterChat from "@/components/StarterChat";
-import SecondaryNavbar from "@/components/Navbar/SecondaryNavbar";
-import Sidebar from "@/components/Sidebar";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-      <div className="drawer lg:drawer-open">
-        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
-          {/* Navbar */}
-          <SecondaryNavbar />
-          {/* chat content here */}
-          <StarterChat />
+      <div className="h-screen w-full">
+        <div className="hero min-h-screen bg-slate-800">
+          <div className="absolute top-0 left-0 flex flex-row justify-between items-center w-full p-8">
+            <div>Crypted-Chat</div>
+            <div className="">
+              <Link href="/" className="link link-hover mr-4">
+                [ Source ]
+              </Link>
+              <Link href="/" className="link link-hover mr-4">
+                [ About Us ]
+              </Link>
+              <Link href="/" className="link link-hover">
+                [ Contact ]
+              </Link>
+            </div>
+            <div>
+              <Link href="/register">
+                <button className="btn btn-sm btn-outline rounded-3xl px-6 py-2">
+                  Join
+                </button>
+              </Link>
+            </div>
+          </div>
+          <div className="hero-content flex-col lg:flex-row-reverse">
+            <div className="card md:h-72 w-96 border border-slate-400 shadow-xl">
+              <div className="card-body fex- flex-col h-full justify-between items-stretch">
+                <h2 className="card-title">Crypted Chats, One Click Away!</h2>
+                <button className="btn btn-outline rounded-3xl px-6 py-2 my-4">
+                  Became a Member
+                </button>
+                <div className="card-actions justify-end">
+                  <button className="btn btn-circle btn-outline">
+                    <span className="-rotate-45">→</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="mb-4">
+              <h1 className="text-5xl font-semibold uppercase">
+                a crypted and creative chat application for everybody.
+              </h1>
+            </div>
+          </div>
+          <div className="absolute bottom-0 p-4 w-96 break-words">
+            {/* md:pl-16 left-0 */}
+            <p className="">
+              ✦ Provident cupiditate voluptatem et in. Quaerat fugiat ut
+              assumenda excepturi exercitationem quasi. In deleniti eaque aut
+              repudiandae et a id nisi. ✦
+            </p>
+          </div>
         </div>
-        {/* Sidebar content here */}
-        <Sidebar />
       </div>
     </>
-  )
+  );
 }

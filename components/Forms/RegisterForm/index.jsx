@@ -13,10 +13,7 @@ const RegisterForm = () => {
 
   const onSubmit = async (values, actions) => {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/users/register",
-        values
-      );
+      const response = await axios.post("/api/users/register", values);
       console.log("Registration successful:", response.data);
     } catch (error) {
       console.error("Registration failed:", error);
@@ -44,23 +41,6 @@ const RegisterForm = () => {
     validationSchema: authSchema,
     onSubmit,
   });
-
-  // const router = useRouter()
-
-  // const registerUser = async (e) => {
-  //   e.preventDefault()
-  //   const response = await fetch('/api/register', {
-  //     method: "POST",
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({data})
-  //   })
-
-  //   const userInfo = await response.json()
-  //   console.log(userInfo)
-  //   router.push("/login")
-  // }
 
   return (
     <div className="flex flex-col items-center justify-cente">

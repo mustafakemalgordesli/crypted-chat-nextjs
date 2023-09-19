@@ -53,7 +53,7 @@ const index = () => {
             </div>
           </div>
         </div>
-        <div className="flex-none hidden lg:block">
+        {/* <div className="flex-none hidden lg:block">
           <div className="gap-2">
             <div className="form-control p-1">
               <input
@@ -63,7 +63,7 @@ const index = () => {
               />
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

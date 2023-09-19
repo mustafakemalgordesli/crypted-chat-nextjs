@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -17,13 +16,11 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/users/login",
-        { username, password }
-      );
-      console.log("Login successful:", response.data);
-
-      router.push("/");
+      const response = await axios.post("/api/users/login", {
+        username,
+        password,
+      });
+      router.push("/chat");
     } catch (error) {
       console.error("Login failed:", error);
       setError("Please check your credentials.");
