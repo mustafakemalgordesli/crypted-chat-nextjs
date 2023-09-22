@@ -94,7 +94,6 @@ export async function POST(req) {
         }
 
         return next({
-            error: err,
             statusCode: httpStatus.BAD_REQUEST,
             message: "Password is wrong",
         })

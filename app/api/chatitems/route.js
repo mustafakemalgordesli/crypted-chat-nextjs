@@ -5,6 +5,7 @@ import httpStatus from "http-status";
 import next from "@/lib/next"
 import useMiddleware from "@/middlewares/useMiddleware";
 import authenticate from "@/middlewares/authenticate";
+import supabase from "@/lib/supabase";
 
 const createSchema = z.object({
     message: z.string().min(1),
@@ -48,6 +49,28 @@ async function postHandler(req) {
     })
 
     const sentUsername = chatItem?.username === chat?.userTwoUsername ? chat?.userOneUsername : chat?.userTwoUsername
+
+    const roomChat = supabase.channel("public:messages")
+
+    roomChat.subscribe((status) => {
+        // Wait for successful connection
+        if (status !== 'SUBSCRIBED') {
+            return null
+        }
+
+        console.log(sentUsername)
+
+        // Send a message once the client is subscribed
+        roomChat.send({
+            type: 'broadcast',
+            event: sentUsername,
+            payload: chatItem
+        })
+    })
+
+
+
+
 
     return NextResponse.json({
         data: {

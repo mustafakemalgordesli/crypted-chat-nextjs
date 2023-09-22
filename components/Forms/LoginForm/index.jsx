@@ -20,7 +20,11 @@ const LoginForm = () => {
         username,
         password,
       });
-      router.push("/chat");
+      console.log(response);
+      if (response?.data?.success) {
+        localStorage.setItem("user", JSON.stringify(response?.data?.data));
+        router.push("/chat");
+      }
     } catch (error) {
       console.error("Login failed:", error);
       setError("Please check your credentials.");
@@ -28,7 +32,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="border border-gray-500 rounded-lg px-24 py-8 shadow-xl">
+    <>
       <div>
         <h1 className="text-gray-300 font-semibold text-2xl mb-8">
           Login to your account
@@ -86,7 +90,7 @@ const LoginForm = () => {
           </p>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 
