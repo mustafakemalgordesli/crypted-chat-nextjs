@@ -58,7 +58,7 @@ const index = () => {
               >
                 <button className="font-semibold text-lg">+</button>
               </div>
-              {/* <div class="tooltip" data-tip="Create DM">
+              {/* <div className="tooltip" data-tip="Create DM">
   <button className="font-semibold text-lg">+</button>
 </div> */}
             </div>

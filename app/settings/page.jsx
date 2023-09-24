@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import ProfilePictureForm from "@/components/Forms/ProfilePicForm";
-// import { cookies } from "next/headers";
+import { cookies } from "next/headers";
 import UsernameEditForm from "@/components/Forms/UsernameEditForm";
 import EmailEditForm from "@/components/Forms/EmailEditForm";
 
@@ -9,8 +9,8 @@ import EmailEditForm from "@/components/Forms/EmailEditForm";
 
 const page = () => {
   const imageService = process.env.IMAGE_SERVICE;
-  // const cookieStore = cookies();
-  // const token = cookieStore.get("accessToken");
+  const cookieStore = cookies();
+  const token = cookieStore.get("accessToken");
   // console.log(token);
   return (
     <div className="max-w-screen-md mx-auto h-screen pt-20">

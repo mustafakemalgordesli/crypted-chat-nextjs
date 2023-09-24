@@ -38,7 +38,7 @@ export default function EmailEditForm() {
             onClick={() => SetLoading((s) => !s)}
             disabled={isLoading}
           >
-            {isLoading && <span class="loading loading-spinner"></span>}
+            {isLoading && <span className="loading loading-spinner"></span>}
             <span className="hidden sm:inline-block">Save</span>
           </button>
         ) : (

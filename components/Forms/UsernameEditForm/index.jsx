@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import { useState } from "react";
 
 export default function UsernameEditForm() {
@@ -9,10 +10,28 @@ export default function UsernameEditForm() {
   const [error, setError] = useState("");
 
   const onSubmit = () => {
+    SetLoading(true);
     if (!username) {
       setError("Username must be required");
+      SetLoading(false);
       return;
     }
+
+    axios
+      .patch("/api/users/updateusername", {
+        username,
+      })
+      .then((res) => {
+        if (res?.data?.success) {
+          localStorage.setItem("user", JSON.stringify(res?.data?.user));
+          SetLoading(false);
+          SetEdit(false);
+        }
+      })
+      .catch((err) => {
+        SetLoading(false);
+        SetEdit(false);
+      });
   };
 
   return (

@@ -3,8 +3,8 @@ import prisma from "@/lib/prisma"
 import { NextResponse } from "next/server";
 import httpStatus from "http-status";
 import next from "@/lib/next"
-import useMiddleware from "@/middlewares/useMiddleware";
-import authenticate from "@/middlewares/authenticate";
+import useMiddleware from "@/lib/middlewares/useMiddleware";
+import authenticate from "@/lib/middlewares/authenticate";
 import supabase from "@/lib/supabase";
 
 const createSchema = z.object({

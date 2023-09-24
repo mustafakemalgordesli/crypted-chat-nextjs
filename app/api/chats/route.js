@@ -3,8 +3,8 @@ import prisma from "@/lib/prisma"
 import { NextResponse } from "next/server";
 import httpStatus from "http-status";
 import next from "@/lib/next"
-import useMiddleware from "@/middlewares/useMiddleware";
-import authenticate from "@/middlewares/authenticate";
+import useMiddleware from "@/lib/middlewares/useMiddleware";
+import authenticate from "@/lib/middlewares/authenticate";
 
 const createSchema = z.object({
     username: z.string().regex(new RegExp(/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/)),
