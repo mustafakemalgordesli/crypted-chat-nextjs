@@ -26,6 +26,13 @@ export async function POST(req) {
                 where: {
                     email: isValidData.username,
                     isStatus: true,
+                },
+                select: {
+                    username: true,
+                    email: true,
+                    id: true,
+                    photoUrl: true,
+                    password: true
                 }
             })
         } else if (/^(?=.{3,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/.test(isValidData.username)) {
@@ -33,6 +40,13 @@ export async function POST(req) {
                 where: {
                     username: isValidData.username,
                     isStatus: true
+                },
+                select: {
+                    username: true,
+                    email: true,
+                    id: true,
+                    photoUrl: true,
+                    password: true
                 }
             })
         }

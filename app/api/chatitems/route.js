@@ -12,6 +12,10 @@ const createSchema = z.object({
     chatId: z.number().min(0)
 })
 
+const getAllSchema = z.object({
+    chatId: z.number().min(0)
+})
+
 async function postHandler(req) {
     const body = await req.json()
     const isValidData = createSchema.parse(body)
@@ -68,10 +72,6 @@ async function postHandler(req) {
         })
     })
 
-
-
-
-
     return NextResponse.json({
         data: {
             chatItem,
@@ -80,7 +80,5 @@ async function postHandler(req) {
         success: true
     })
 }
-
-
 
 export const POST = async (req) => await useMiddleware(req, authenticate, postHandler)

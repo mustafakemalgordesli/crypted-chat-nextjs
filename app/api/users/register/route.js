@@ -63,7 +63,8 @@ export async function POST(req) {
             }, select: {
                 username: true,
                 email: true,
-                id: true
+                id: true,
+                photoUrl: true
             }
         });
 

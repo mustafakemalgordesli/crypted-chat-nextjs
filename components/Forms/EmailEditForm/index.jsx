@@ -2,53 +2,44 @@
 
 import { useState } from "react";
 
-export default function UsernameEditForm() {
+export default function EmailEditForm() {
   const [isLoading, SetLoading] = useState(false);
   const [isEdit, SetEdit] = useState(false);
-  const [username, setUsername] = useState("faya");
-  const [error, setError] = useState("");
-
-  const onSubmit = () => {
-    if (!username) {
-      setError("Username must be required");
-      return;
-    }
-  };
-
+  const [email, setEmail] = useState("faya@gmail.com");
+  const [error, setError] = useState("deneme");
   return (
     <div className="h-[60px] flex justify-between items-center px-2 sm:px-6 border-b border-black">
       <div className="flex items-center space-x-3">
-        <div className="font-bold uppercase opacity-50">Username:</div>
+        <div className="font-bold uppercase opacity-50">Email:</div>
         {isEdit ? (
           <>
             <input
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              id="username"
-              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              id="email"
+              type="email"
               className="input input-bordered w-full max-w-sm placeholder:text-sm h-10"
+              required
             />
             {/* {error && (
-              <p className="text-xs h-2 flex justify-center items-center text-center text-red-700 mt-4">
+              <p className="text-xs h-4 flex justify-center items-center text-center text-red-700 mt-4">
                 {error}
               </p>
             )} */}
           </>
         ) : (
-          <div className="text-sm">{username}</div>
+          <div className="text-sm">{email}</div>
         )}
       </div>
       <div>
         {isEdit ? (
           <button
             className="btn btn-ghost btn-sm flex flex-row items-center justify-center text-center"
-            onClick={onSubmit}
+            onClick={() => SetLoading((s) => !s)}
             disabled={isLoading}
           >
             {isLoading && <span class="loading loading-spinner"></span>}
-            <span className={`${isLoading && "hidden"} sm:inline-block`}>
-              Save
-            </span>
+            <span className="hidden sm:inline-block">Save</span>
           </button>
         ) : (
           <button
