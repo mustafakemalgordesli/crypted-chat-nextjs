@@ -18,7 +18,7 @@ const page = () => {
           {/* Navbar */}
           <MainNavbar />
           {/* chat content here */}
-          <Chat />
+          <Chat/>
         </div>
         {/* Sidebar content here */}
         <Sidebar />
