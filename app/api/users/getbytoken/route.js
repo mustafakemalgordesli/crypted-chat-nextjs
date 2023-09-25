@@ -1,8 +1,8 @@
 import prisma from "@/lib/prisma"
 import httpStatus from "http-status";
 import next from "@/lib/next"
-import useMiddleware from "@/middlewares/useMiddleware";
-import authenticate from "@/middlewares/authenticate";
+import useMiddleware from "@/lib/middlewares/useMiddleware";
+import authenticate from "@/lib/middlewares/authenticate";
 import { NextResponse } from "next/server";
 
 async function handler(req) {

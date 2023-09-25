@@ -57,7 +57,7 @@ export default function ProfilePictureForm({ imageService, token }) {
             src={user?.photoUrl ? imageService + user?.photoUrl : `/1.jpg`}
             // src={user?.photoUrl ? imageService + user?.photoUrl : `/12.jpg`}
             id="output"
-            className={`${styles.profileImage} bg-primary-200`}
+            className={`${styles.profileImage}`}
             width={165}
             height={165}
             alt="profile image"

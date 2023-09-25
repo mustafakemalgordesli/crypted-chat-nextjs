@@ -3,6 +3,7 @@ import React from "react";
 import ProfilePictureForm from "@/components/Forms/ProfilePicForm";
 import { cookies } from "next/headers";
 import UsernameEditForm from "@/components/Forms/UsernameEditForm";
+import EmailEditForm from "@/components/Forms/EmailEditForm";
 
 // needs to be fixed!!!!!!!!!!!!!!
 
@@ -15,42 +16,16 @@ const page = () => {
     <div className="max-w-screen-md mx-auto h-screen pt-20">
       <div>
         <div className="overflow-x-auto">
-          <table className="table rounded-xl border border-gray-600 dark:border-gray-800">
-            {/* head */}
-            <thead>
-              <tr>
-                <th className="flex flex-row w-full justify-between items-center">
-                  <ProfilePictureForm
-                    imageService={imageService}
-                    token={token}
-                  />
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* row 1 */}
-              <tr className="h-[65px]">
-                <UsernameEditForm />
-              </tr>
-              {/* row 2 */}
-              <tr>
-                <td>
-                  <div className="flex items-center space-x-3">
-                    <div>
-                      <div className="font-bold uppercase opacity-50">
-                        Email
-                      </div>
-                      <div className="text-sm">faya@gmail.com</div>
-                    </div>
-                  </div>
-                </td>
-                <td></td>
-                <th>
-                  <button className="btn btn-ghost btn-sm">edit</button>
-                </th>
-              </tr>
-              {/* row 3 */}
-              <tr>
+          <div className="rounded-xl border border-gray-600 dark:border-gray-800">
+            <div className="flex flex-row w-full justify-between items-center border-b border-black px-4">
+              <ProfilePictureForm imageService={imageService} token={token} />
+            </div>
+            <div>
+              <UsernameEditForm />
+
+              <EmailEditForm />
+
+              {/* <tr>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div>
@@ -63,9 +38,9 @@ const page = () => {
                 <th>
                   <button className="btn btn-ghost btn-sm">edit</button>
                 </th>
-              </tr>
-            </tbody>
-          </table>
+              </tr> */}
+            </div>
+          </div>
         </div>
       </div>
     </div>
