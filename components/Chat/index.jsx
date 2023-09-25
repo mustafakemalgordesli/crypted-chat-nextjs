@@ -7,11 +7,11 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const Chat = ({ token }) => {
+const Chat = ({ token, loading, setLoading }) => {
   const bottomRef = useRef(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavioe: "smooth" });
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
 
   const router = useRouter();
@@ -19,13 +19,6 @@ const Chat = ({ token }) => {
   const [message, setMessage] = useState("");
 
   const chatId = 1;
-  // const apiUrl = "http://localhost:3000/api/chatitems/";
-
-  // const headers = {
-  //   Authorization:
-  //     "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjozNCwidXNlcm5hbWUiOiJ1c2VydHdvIiwiZW1haWwiOiJ1c2VydHdvQGdtYWlsLmNvbSJ9LCJpYXQiOjE2OTQ1MDcxNDcsImV4cCI6MTY5NzA5OTE0N30.kbkVFcogLZyixQdmJZUg4pZlFw09419M-fEuyHOGqpk",
-  //   "Content-Type": "application/json",
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -54,7 +47,7 @@ const Chat = ({ token }) => {
     <>
       <div className="px-5 w-full">
         <div className="my-20">
-          <ChatItem token={token} />
+        <ChatItem token={token} loading={loading} setLoading={setLoading}/>
           <div ref={bottomRef} />
         </div>
         <form className="fixed bottom-0 right-0 lg:left-80 w-full lg:w-auto bg-base-100">

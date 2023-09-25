@@ -25,15 +25,17 @@ const index = () => {
         <div className="flex items-center justify-between max-w-full mx-1">
           <div className="">
             <div className="dropdown dropdown-end flex flex-row justify-center items-center">
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar ">
+              {/* <label tabIndex={0} className="btn btn-ghost btn-circle avatar "> */}
+              <div className="btn btn-ghost btn-circle avatar hover:bg-transparent">
                 <div className="w-10 rounded-full">
                   <Image src="/1.jpg" alt="" width={40} height={40} />
                 </div>
-              </label>
+              </div>
+              {/* </label> */}
               <div className="pl-3 font-semibold text-lg text-gray-200">
                 <span>Obi-Wan Kenobi</span>
               </div>
-              <ul
+              {/* <ul
                 tabIndex={0}
                 className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 left-0 top-14"
               >
@@ -49,7 +51,7 @@ const index = () => {
                 <li>
                   <a>Logout</a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>

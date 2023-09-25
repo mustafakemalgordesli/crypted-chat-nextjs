@@ -2,10 +2,11 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-const index = () => {
+const index = ({data, variant}) => {
   return (
     <>
-      <div className="drawer-side z-10">
+    {data?.readChats?.map((item) => (
+      <div className="drawer-side z-10" key={item.id}>
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
           <div className="border-b border-gray-600">
@@ -53,25 +54,91 @@ const index = () => {
                 Direct Messages
               </h2>
               <div
-                className="tooltip hover:tooltip-open tooltip-top z-10"
+                className="tooltip hover:tooltip-open tooltip-top z-999"
                 data-tip="Create DM"
               >
-                <button className="font-semibold text-lg">+</button>
+                <div className="dropdown dropdown-right dropdown-bottom">
+                  <label
+                    tabIndex={0}
+                    className="btn hover:bg-none font-semibold text-lg"
+                  >
+                    +
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content z-999 menu p-2 shadow bg-base-100 rounded-box w-72"
+                  >
+                    <h1 className="text-start text-lg p-4">Select Friends</h1>
+                    <li>
+                      <Link
+                        href="#"
+                        className="flex items-center jus text-gray-900 transition duration-75 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-white group"
+                      >
+                        <button
+                          type="button"
+                          className="flex text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                        >
+                          <Image
+                            height={32}
+                            width={32}
+                            className="w-8 h-8 rounded-full object-cover"
+                            src="/1.jpg"
+                            alt="user photo"
+                          />
+                        </button>
+                        <div className="flex flex-col justify-between items-start overflow-hidden transition-all mr-2 px-2.5 py-0.5">
+                          <h4 className="font-semibold text-gray-200">
+                            John Doe
+                          </h4>
+                          <span className="text-xs text-gray-600">
+                            johndoe@gmail.com
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="#"
+                        className="flex items-center jus text-gray-900 transition duration-75 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-white group"
+                      >
+                        <button
+                          type="button"
+                          className="flex text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                        >
+                          <Image
+                            height={32}
+                            width={32}
+                            className="w-8 h-8 rounded-full object-cover"
+                            src="/1.jpg"
+                            alt="user photo"
+                          />
+                        </button>
+                        <div className="flex flex-col justify-between items-start overflow-hidden transition-all mr-2 px-2.5 py-0.5">
+                          <h4 className="font-semibold text-gray-200">
+                            John Doe
+                          </h4>
+                          <span className="text-xs text-gray-600">
+                            johndoe@gmail.com
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              {/* <div className="tooltip" data-tip="Create DM">
-  <button className="font-semibold text-lg">+</button>
-</div> */}
             </div>
           </div>
           <div className="h-full px-1 py-2 overflow-y-auto">
             <ul className="space-y-2 font-medium">
               <li>
-                <Link
-                  href="#"
+                {/* <Link
+                  // href={`/${item.id}`}
+                  href="/"
                   className="flex items-center jus text-gray-900 transition duration-75 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 dark:text-white group"
-                >
+                > */}
                   <button
                     type="button"
+                    onClick={!variant}
                     className="flex text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                   >
                     <Image
@@ -83,17 +150,17 @@ const index = () => {
                     />
                   </button>
                   <div className="flex flex-col justify-between items-start overflow-hidden transition-all mr-2 px-2.5 py-0.5">
-                    <h4 className="font-semibold text-gray-200">John Doe</h4>
-                    <span className="text-xs text-gray-600">
+                    <h4 className="font-semibold text-gray-200">{item.userTwoUsername}</h4>
+                    {/* <span className="text-xs text-gray-600">
                       johndoe@gmail.com
-                    </span>
+                    </span> */}
                   </div>
-                  <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 ">
+                  {/* <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300 ">
                     3
-                  </span>
-                </Link>
+                  </span> */}
+                {/* </Link> */}
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="#"
                   className="flex items-center text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group"
@@ -127,7 +194,7 @@ const index = () => {
                     3
                   </span>
                 </Link>
-              </li>
+              </li> */}
             </ul>
             <ul className="pt-4 mt-4 space-y-2 font-medium border-t border-gray-600">
               <li>
@@ -163,10 +230,7 @@ const index = () => {
             <div className="fixed w-full z-20 bottom-0 left-0 space-y-2 font-medium border-t border-gray-700 dark:border-gray-700">
               <div>
                 <div className="flex items-center p-2 text-gray-900 transition duration-75 group">
-                  <button
-                    type="button"
-                    className="flex text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300"
-                  >
+                  <div className="flex text-sm bg-gray-800 rounded-full md:mr-0">
                     <div className="chat-image avatar">
                       <div className="w-8 rounded-full">
                         <Image
@@ -178,19 +242,28 @@ const index = () => {
                         />
                       </div>
                     </div>
-                  </button>
+                  </div>
                   <div className="flex flex-row w-full justify-between items-center overflow-hidden transition-all mr-2 px-2.5 py-0.5">
                     <h4 className="font-semibold text-gray-200">John Doe</h4>
-                    <div
-                      className="tooltip hover:tooltip-open tooltip-top"
-                      data-tip="User Settings"
+                  </div>
+                  <div className="dropdown dropdown-top">
+                    <label
+                      tabIndex={0}
+                      className="btn rotate-90 text-xl font-bold self-center rounded-full"
                     >
-                      <Link href="/settings">
-                        <button className="inline-flex items-center justify-center text-lg font-medium text-gray-300 rotate-90">
-                          ...
-                        </button>
-                      </Link>
-                    </div>
+                      ...
+                    </label>
+                    <ul
+                      tabIndex={0}
+                      className="dropdown-content z-[9999] menu p-2 shadow bg-base-100 rounded-box w-52 text-gray-600"
+                    >
+                      <li>
+                        <Link href="/settings">Settings</Link>
+                      </li>
+                      <li>
+                        <Link href="/">Logout</Link>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -198,6 +271,7 @@ const index = () => {
           </div>
         </ul>
       </div>
+      ))}
     </>
   );
 };
