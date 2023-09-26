@@ -51,7 +51,7 @@ const LoginForm = () => {
               type="text"
               placeholder="Username"
               className="input input-bordered w-full max-w-xs placeholder:text-sm"
-              required
+
               // className={errors.username && touched.username ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm" : "input input-bordered w-full max-w-xs placeholder:text-sm"}
             />
           </div>
@@ -67,7 +67,6 @@ const LoginForm = () => {
               id="password"
               type="password"
               className="input input-bordered w-full max-w-xs placeholder:text-sm"
-              required
               // className={errors.username && touched.username ? "input input-bordered input-error w-full max-w-xs placeholder:text-sm" : "input input-bordered w-full max-w-xs placeholder:text-sm"}
             />
             {error && <p className="text-xs text-red-700 mt-4">{error}</p>}

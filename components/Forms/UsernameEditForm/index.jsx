@@ -64,7 +64,7 @@ export default function UsernameEditForm() {
             onClick={onSubmit}
             disabled={isLoading}
           >
-            {isLoading && <span class="loading loading-spinner"></span>}
+            {isLoading && <span className="loading loading-spinner"></span>}
             <span className={`${isLoading && "hidden"} sm:inline-block`}>
               Save
             </span>
