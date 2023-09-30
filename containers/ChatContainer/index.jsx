@@ -14,7 +14,7 @@ const ChatContainer = () => {
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
-          {!isToken ? (
+          {isToken ? (
             <>
               <SecondaryNavbar />
               <StarterChat />
@@ -22,7 +22,7 @@ const ChatContainer = () => {
           ) : (
             <>
               <MainNavbar />
-              {/* <Chat token={token} loading={loading} setLoading={setLoading} /> */}
+              <Chat />
             </>
           )}
         </div>

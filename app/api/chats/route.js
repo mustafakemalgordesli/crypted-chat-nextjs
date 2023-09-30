@@ -120,7 +120,7 @@ async function getHandler(req) {
                 orderBy: {
                     createdAt: 'asc',
                 },
-            },
+            }
         },
     }), prisma.chat.findMany({
         where: {

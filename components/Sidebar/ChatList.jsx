@@ -6,13 +6,13 @@ import UnReadChatList from "./UnReadChatList";
 import axios from "axios";
 
 export default function ChatList() {
-  useEffect(() => {
-    axios.get("/api/chats").then((res) => {
-      if (res.data?.success) {
-        console.log(res.data);
-      }
-    });
-  });
+  // useEffect(() => {
+  //   axios.get("/api/chats").then((res) => {
+  //     if (res.data?.success) {
+  //       console.log(res.data);
+  //     }
+  //   });
+  // });
 
   return (
     <>

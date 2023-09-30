@@ -18,7 +18,7 @@ const RegisterForm = () => {
     } catch (error) {
       console.error("Registration failed:", error);
     }
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
     actions.resetForm();
     router.push("/login");
   };

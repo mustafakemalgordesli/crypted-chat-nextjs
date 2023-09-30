@@ -8,7 +8,7 @@ const Sidebar = () => {
     <>
       <div className="drawer-side z-10">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+        <div className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
           <div className="border-b border-gray-600">
             <div className="mb-3">
               <div className="overflow-hidden transition-all text-sm font-semibold px-2.5 py-1">
@@ -150,16 +150,17 @@ const Sidebar = () => {
                   <div className="flex flex-row w-full justify-between items-center overflow-hidden transition-all mr-2 px-2.5 py-0.5">
                     <h4 className="font-semibold text-gray-200">John Doe</h4>
                   </div>
+
                   <div className="dropdown dropdown-top">
                     <label
                       tabIndex={0}
-                      className="btn rotate-90 text-xl font-bold self-center rounded-full"
+                      className="btn rotate-90 text-xl font-bold self-center rounded-full "
                     >
                       ...
                     </label>
                     <ul
                       tabIndex={0}
-                      className="dropdown-content z-[9999] menu p-2 shadow bg-base-100 rounded-box w-52 text-gray-600"
+                      className="dropdown-content z-[9999] menu p-2 shadow bg-base-100 rounded-box w-40 text-gray-600"
                     >
                       <li>
                         <Link href="/settings">Settings</Link>
@@ -173,7 +174,7 @@ const Sidebar = () => {
               </div>
             </div>
           </div>
-        </ul>
+        </div>
       </div>
     </>
   );

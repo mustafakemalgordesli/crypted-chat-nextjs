@@ -23,7 +23,7 @@ const LoginForm = () => {
       console.log(response);
       if (response?.data?.success) {
         localStorage.setItem("user", JSON.stringify(response?.data?.data));
-        router.push("/chat");
+        router.push("/");
       }
     } catch (error) {
       console.error("Login failed:", error);

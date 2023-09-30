@@ -3,7 +3,8 @@ import Link from "next/link";
 
 export default function UnReadChatList() {
   return (
-    <ul className="space-y-2 font-medium border-b border-gray-600 pb-2">
+    //border-b border-gray-600
+    <ul className="space-y-2 font-medium pb-2">
       <li>
         <Link
           href="#"
