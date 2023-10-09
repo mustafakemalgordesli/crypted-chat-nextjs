@@ -115,13 +115,13 @@ async function getHandler(req) {
                 }
             ]
         },
-        include: {
-            ChatItems: {
-                orderBy: {
-                    createdAt: 'asc',
-                },
-            }
-        },
+        // include: {
+        //     ChatItems: {
+        //         orderBy: {
+        //             createdAt: 'asc',
+        //         },
+        //     }
+        // },
     }), prisma.chat.findMany({
         where: {
             AND: [
@@ -148,13 +148,13 @@ async function getHandler(req) {
                 }
             ]
         },
-        include: {
-            ChatItems: {
-                orderBy: {
-                    createdAt: 'asc',
-                },
-            },
-        },
+        // include: {
+        //     ChatItems: {
+        //         orderBy: {
+        //             createdAt: 'asc',
+        //         },
+        //     },
+        // },
     })])
 
     return NextResponse.json({

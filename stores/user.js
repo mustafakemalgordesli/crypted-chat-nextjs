@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import axios from "axios"
 import getToken from "@/lib/getToken"
 
 const initialState = {
@@ -6,10 +7,11 @@ const initialState = {
 }
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
-    console.log("user fetch")
-    // const token = getToken()
-    const user = await fetch()
-    return Promise.resolve({ id: 1, username: "faya23", email: "usertwo@gmail.com" })
+    const res = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/api/users/getbytoken", {
+        headers: { authorization: "Bearer " + getToken() }
+    })
+    if (res?.data?.success) return res.data.data
+    return {}
 })
 
 export const { reducer, actions } = createSlice({

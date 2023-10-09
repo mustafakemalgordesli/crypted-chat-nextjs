@@ -1,20 +1,19 @@
-import ChatContainer from "@/containers/ChatContainer";
-import { cookies } from "next/headers";
+// import ChatContainer from "@/containers/ChatContainer";
+// import { cookies } from "next/headers";
 
+// const ChatHomePage = () => {
 
-const ChatHomePage = () => {
+//   const cookieStore = cookies();
 
-  const cookieStore = cookies();
+//   const token = cookieStore.get("accessToken");
 
-  const token = cookieStore.get("accessToken");
+//   const tokenValue = token?.value;
 
-  const tokenValue = token?.value;
+//   return (
+//     <>
+//       <ChatContainer/>
+//     </>
+//   );
+// };
 
-  return (
-    <>
-      <ChatContainer/>
-    </>
-  );
-};
-
-export default ChatHomePage;
+// export default ChatHomePage;

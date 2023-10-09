@@ -91,16 +91,20 @@ export async function POST(req) {
                 },
             }, { status: 200 });
 
+            const expTime = 30 * 24 * 60 * 60 * 1000
+
             response.cookies.set({
                 name: "accessToken",
                 value: accessToken,
                 path: "/",
+                expires: Date.now() + expTime
             });
 
             response.cookies.set({
                 name: "refreshToken",
                 value: refreshToken,
                 path: "/",
+                expires: Date.now() + expTime
             })
 
 

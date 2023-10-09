@@ -1,35 +1,50 @@
-import axios from "axios";
-import Chat from "@/components/Chat";
-import MainNavbar from "@/components/Navbar/MainNavbar";
-import StarterChat from "@/components/StarterChat";
-import SecondaryNavbar from "@/components/Navbar/SecondaryNavbar";
-import Sidebar from "@/components/Sidebar";
-import hasToken from "@/lib/hasToken";
+import axios from 'axios';
+import Chat from '@/components/Chat';
+import MainNavbar from '@/components/Navbar/MainNavbar';
+import StarterChat from '@/components/StarterChat';
+import SecondaryNavbar from '@/components/Navbar/SecondaryNavbar';
+import Sidebar from '@/components/Sidebar';
+import { store } from '@/stores';
+import { fetchChats } from '@/stores/chat';
 
-const ChatContainer = () => {
-  const isToken = hasToken();
+const ChatContainer = async () => {
+    // useEffect(() => {
+    //     axios
+    //         .get('/api/chats')
+    //         .then((res) => {
+    //             if (res?.data?.success) {
+    //                 store.dispatch(SetChat(res?.data?.data));
+    //                 store.dispatch(SetLoading(false));
+    //             }
+    //         })
+    //         .catch((err) => console.log(err));
+    // }, []);
 
-  return (
-    <>
-      <div className="drawer lg:drawer-open">
-        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
-          {isToken ? (
-            <>
-              <SecondaryNavbar />
-              <StarterChat />
-            </>
-          ) : (
-            <>
-              <MainNavbar />
-              <Chat />
-            </>
-          )}
-        </div>
-        <Sidebar />
-      </div>
-    </>
-  );
+    await store.dispatch(fetchChats());
+
+    return (
+        <>
+            <div className="drawer lg:drawer-open">
+                <input
+                    id="my-drawer-2"
+                    type="checkbox"
+                    className="drawer-toggle"
+                />
+                <div className="drawer-content flex flex-col items-center justify-center">
+                    {/* <>
+                        <SecondaryNavbar />
+                        <StarterChat />
+                    </> */}
+
+                    <>
+                        <MainNavbar />
+                        <Chat />
+                    </>
+                </div>
+                <Sidebar />
+            </div>
+        </>
+    );
 };
 
 export default ChatContainer;
