@@ -11,7 +11,8 @@ async function handler(req) {
             id: true,
             email: true,
             role: true,
-            username: true
+            username: true,
+            photoUrl: true
         }
     })
 

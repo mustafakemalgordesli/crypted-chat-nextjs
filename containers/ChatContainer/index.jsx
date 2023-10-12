@@ -7,21 +7,7 @@ import Sidebar from '@/components/Sidebar';
 import { store } from '@/stores';
 import { fetchChats } from '@/stores/chat';
 
-const ChatContainer = async () => {
-    // useEffect(() => {
-    //     axios
-    //         .get('/api/chats')
-    //         .then((res) => {
-    //             if (res?.data?.success) {
-    //                 store.dispatch(SetChat(res?.data?.data));
-    //                 store.dispatch(SetLoading(false));
-    //             }
-    //         })
-    //         .catch((err) => console.log(err));
-    // }, []);
-
-    await store.dispatch(fetchChats());
-
+const ChatContainer = () => {
     return (
         <>
             <div className="drawer lg:drawer-open">

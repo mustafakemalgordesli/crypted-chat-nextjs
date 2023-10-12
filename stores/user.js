@@ -7,8 +7,10 @@ const initialState = {
 }
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
+    const token = getToken()
+    if (!token) return {}
     const res = await axios.get(process.env.NEXT_PUBLIC_API_URL + "/api/users/getbytoken", {
-        headers: { authorization: "Bearer " + getToken() }
+        headers: { authorization: "Bearer " + token }
     })
     if (res?.data?.success) return res.data.data
     return {}

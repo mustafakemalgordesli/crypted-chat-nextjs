@@ -8,7 +8,12 @@ import { fetchChats } from "@/stores/chat";
 export default async function Home() {
     await store.dispatch(fetchUser())
     const { user } = store.getState().user
-    if (!user) return <HomeContainer />
-    // await store.dispatch(fetchChats())
-    return <ChatContainer />
+    console.log(user)
+    if (!user?.username) return <HomeContainer />
+    else {
+        await store.dispatch(fetchChats());
+        const chat = store.getState().chat;
+        console.log(chat);
+        return <ChatContainer />
+    }
 }
