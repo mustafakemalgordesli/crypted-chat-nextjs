@@ -44,12 +44,12 @@ const SkeletonComp = () => {
 const Item = ({ chat }) => {
     const imageService = process.env.IMAGE_SERVICE;
     const { user } = store.getState().user;
-    console.log(user);
+    // console.log(user);
     const otherUser =
         user?.username === chat?.userOne?.username
             ? chat.userTwo
             : chat.userOne;
-    console.log(otherUser);
+    // console.log(otherUser);
     return (
         <li>
             <button className="flex items-center text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">

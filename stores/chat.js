@@ -4,6 +4,7 @@ import axios from "axios"
 
 const initialState = {
     chats: {},
+    currentChat: {},
     isLoading: true
 }
 

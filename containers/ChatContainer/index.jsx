@@ -5,9 +5,9 @@ import StarterChat from '@/components/StarterChat';
 import SecondaryNavbar from '@/components/Navbar/SecondaryNavbar';
 import Sidebar from '@/components/Sidebar';
 import { store } from '@/stores';
-import { fetchChats } from '@/stores/chat';
 
 const ChatContainer = () => {
+    const { currentChat } = store.getState().chat;
     return (
         <>
             <div className="drawer lg:drawer-open">
@@ -17,15 +17,17 @@ const ChatContainer = () => {
                     className="drawer-toggle"
                 />
                 <div className="drawer-content flex flex-col items-center justify-center">
-                    {/* <>
-                        <SecondaryNavbar />
-                        <StarterChat />
-                    </> */}
-
-                    <>
-                        <MainNavbar />
-                        <Chat />
-                    </>
+                    {currentChat?.id ? (
+                        <>
+                            <MainNavbar />
+                            <Chat />
+                        </>
+                    ) : (
+                        <>
+                            <SecondaryNavbar />
+                            <StarterChat />
+                        </>
+                    )}
                 </div>
                 <Sidebar />
             </div>
