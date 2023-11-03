@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import getToken from "@/lib/getToken"
 import axios from "axios"
 
 const initialState = {
@@ -8,9 +7,9 @@ const initialState = {
     isLoading: true
 }
 
-export const fetchChats = createAsyncThunk("chat/fetchChats", async () => {
+export const fetchChats = createAsyncThunk("chat/fetchChats", async (accesstoken) => {
     try {
-        const token = "Bearer " + getToken()
+        const token = "Bearer " + accesstoken
         const API_URL = process.env.NEXT_PUBLIC_API_URL + "/api/chats"
         const res = await axios.get(API_URL, {
             headers: { "authorization": token }
